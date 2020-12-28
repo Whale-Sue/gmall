@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: auth-service
+  cloud:
+    nacos:
+      config:
+        server-addr: 127.0.0.1:8848
+
+logging.level.com.alibaba.nacos.client.naming: WARN

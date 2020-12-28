@@ -1,0 +1,74 @@
+server:
+  port: 18090
+
+spring:
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+    sentinel:
+      transport:
+        dashboard: localhost:8080
+        port: 8719
+  zipkin:
+    discovery-client-enabled: true
+    base-url: http://localhost:9411
+    sender:
+      type: web
+  sleuth:
+    sampler:
+      probability: 1
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/guli_cart
+    username: root
+    password: 123456
+  redis:
+    host: 192.168.88.128
+  thymeleaf:
+    cache: false
+  task:
+    execution:
+      thread-name-prefix: cart-task-
+      pool:
+        core-size: 100
+        max-size: 500
+        keep-alive: 60s
+        queue-capacity: 5000
+        allow-core-thread-timeout: true
+      shutdown:
+        await-termination: true
+        await-termination-period: 60s
+  rabbitmq:
+    host: 192.168.88.128
+    virtual-host: /admin
+    username: admin
+    password: admin
+    listener:
+      simple:
+        prefetch: 1
+        acknowledge-mode: manual
+        concurrency: 3
+
+feign:
+  sentinel:
+    enabled: true
+
+mybatis-plus:
+  global-config:
+    db-config:
+      id-type: auto
+
+logging:
+  level:
+    com.atguigu.gmall: info
+
+
+jwt:
+  pubKeyPath: E:\004_Java_Study\001_MyWork\006_OnlineMall\01_project\rsa\rsa.pub
+  cookieName: GMALL-TOKEN
+  userKey: user-key
+  expire: 15552000
+
+
+

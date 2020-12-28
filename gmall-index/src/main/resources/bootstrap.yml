@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: index-service
+
+  cloud:
+    nacos:
+      config:
+        server-addr: localhost:8848
+
+logging.level.com.alibaba.nacos.client.naming: WARN

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.atguigu.gmall.pms.mapper.CategoryMapper">
+
+    <resultMap id="subCategoryMap" type="CategoryEntity" autoMapping="true">
+        <id property="id" column="id"/>
+
+        <!--起别名的方式，将虚表b中的字段名，一一映射进subs的属性-->
+        <!--<collection property="subs" javaType="List" ofType="CategoryEntity" autoMapping="true">
+            <id property="id" column="bid"/>
+            <result property="name" column="bname">
+        </collection>-->
+
+        <collection property="subs" javaType="List" ofType="CategoryEntity" select="queryLv2CategoriesWithSubsByParentId" column="id"/>
+    </resultMap>
+
+    <!--/*关联查询*/
+    /*SELECT * FROM pms_category a INNER JOIN pms_category b ON a.`id` = b.`parent_id` WHERE a.`parent_id` = #{parentId}*/
+
+    /*分布查询&#45;&#45;懒加载*/-->
+    <select id="queryLv2CategoriesWithSubsByParentId" resultMap="subCategoryMap">
+        SELECT * FROM pms_category a WHERE a.`parent_id` = #{parentId}
+    </select>
+</mapper>

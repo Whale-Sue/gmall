@@ -1,0 +1,74 @@
+server:
+  port: 8888
+spring:
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+    gateway:
+      routes:
+        - id: pms-route # 商品管理路由
+          uri: lb://pms-service
+          predicates:
+            - Path=/pms/**
+        - id: oms-route # 订单管理路由
+          uri: lb://oms-service
+          predicates:
+            - Path=/oms/**
+        - id: ums-route # 用户管理路由
+          uri: lb://ums-service
+          predicates:
+            - Path=/ums/**
+        - id: wms-route # 仓库管理路由
+          uri: lb://wms-service
+          predicates:
+            - Path=/wms/**
+        - id: sms-route # 营销管理路由
+          uri: lb://sms-service
+          predicates:
+            - Path=/sms/**
+        - id: search-route
+          uri: lb://search-service
+          predicates:
+            - Host=search.gmall.com
+        - id: index-route
+          uri: lb://index-service
+          predicates:
+            - Path=/index/**
+        - id: index-route2
+          uri: lb://index-service
+          predicates:
+            - Host=gmall.com, www.gmall.com
+        - id: item-route
+          uri: lb://item-service
+          predicates:
+            - Host=item.gmall.com
+        - id: auth-route
+          uri: lb://auth-service
+          predicates:
+            - Host=sso.gmall.com
+        - id: cart-route
+          uri: lb://cart-service
+          predicates:
+            - Host=cart.gmall.com
+        - id: order-route
+          uri: lb://order-service
+          predicates:
+            - Host=order.gmall.com
+          filters:
+            - Auth=/
+        - id: payment-route
+          uri: lb://payment-service
+          predicates:
+            - Host=payment.gmall.com
+          filters:
+            - Auth=/
+        - id: payment-route
+          uri: lb://payment-service
+          predicates:
+            - Path=/pay/**
+
+
+jwt:
+  pubKeyPath: E:\004_Java_Study\001_MyWork\006_OnlineMall\01_project\rsa\rsa.pub
+  cookieName: GMALL-TOKEN
