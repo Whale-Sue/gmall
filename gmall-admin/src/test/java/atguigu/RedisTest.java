@@ -24,4 +24,8 @@ public class RedisTest {
 		System.out.println(ToStringBuilder.reflectionToString(redisUtils.get("user", SysUserEntity.class)));
 	}
 
+	@Test
+	public void testCherryPick() {
+		System.out.println("this is before cherry pick, plz ignore this commit");
+	}
 }
