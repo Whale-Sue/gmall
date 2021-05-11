@@ -33,4 +33,9 @@ public class RedisTest {
 	public void realCherryPick() {
 		System.out.println("this is real cherry pick, you should accept this commit");
 	}
+
+	@Test
+	public void realCherryPick2() {
+		System.out.println("this is real cherry pick again, you should accept this commit");
+	}
 }
