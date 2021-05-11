@@ -28,4 +28,9 @@ public class RedisTest {
 	public void testCherryPick() {
 		System.out.println("this is before cherry pick, plz ignore this commit");
 	}
+
+	@Test
+	public void realCherryPick() {
+		System.out.println("this is real cherry pick, you should accept this commit");
+	}
 }
